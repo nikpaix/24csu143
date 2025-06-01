@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include "Student.cpp"  
+using namespace std;
+
+class StudentManagementSystem {
+private:
+    vector<Student> students;
+
+public:
+    // to add a new student
+    void addStudent(Student student) {
+        students.push_back(student);
+    }
+
+    // to search student by roll number
+    Student* searchStudent(int roll_number) {
+        for (auto& student : students) {
+            if (student.getRollNumber() == roll_number) {
+                return &student;
+            }
+        }
+        return nullptr; // Not found
+    }
+
+    // Mto display all students
+    void displayAllStudents() {
+        if (students.empty()) {
+            cout << "No students in the system.\n";
+            return;
+        }
+
+        for (auto& student : students) {
+            student.displayDetails();
+            cout << "----------------------\n";
+        }
+    }
+};
