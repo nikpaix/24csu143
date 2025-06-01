@@ -1,0 +1,45 @@
+#include <iostream>
+#include "StudentManagementSystem.cpp"  
+using namespace std;
+
+int main() {
+    //  StudentManagementSystem object
+    StudentManagementSystem sms;
+
+    //  some students with updated details
+    Student student1("Neeva", 139, 8.7);
+    student1.addCourse("Effective Communication");
+    student1.addCourse("Chemistry");
+
+    Student student2("Tejas", 142, 9.2);
+    student2.addCourse("PSDT");
+    student2.addCourse("BME");
+
+    // Add students to the system
+    sms.addStudent(student1);
+    sms.addStudent(student2);
+
+    // Display all students
+    cout << "All Students:\n";
+    sms.displayAllStudents();
+
+    // Search for a student by roll number
+    int roll_number_to_search = 139;
+    Student* searchedStudent = sms.searchStudent(roll_number_to_search);
+    if (searchedStudent) {
+        cout << "\nStudent found with roll number " << roll_number_to_search << ":\n";
+        searchedStudent->displayDetails();
+    } else {
+        cout << "Student not found with roll number " << roll_number_to_search << "\n";
+    }
+
+    // Update CGPA of a student
+    cout << "\nUpdating CGPA for student Tejas...\n";
+    searchedStudent = sms.searchStudent(142); // Tejas
+    if (searchedStudent) {
+        searchedStudent->updateCGPA(9.5); // Update CGPA to 9.5
+        searchedStudent->displayDetails(); // Display updated details
+    }
+
+    return 0;
+}
