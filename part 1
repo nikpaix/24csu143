@@ -1,0 +1,58 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int roll_number;
+    float CGPA;
+    vector<string> courses;
+
+public:
+    // Default Constructor
+    Student() : name(""), roll_number(0), CGPA(0.0) {}
+
+    // Parameterized Constructor
+    Student(string name, int roll_number, float CGPA) {
+        this->name = name;
+        this->roll_number = roll_number;
+        this->CGPA = CGPA;
+    }
+
+    // Destructor
+    ~Student() {
+        courses.clear();
+    }
+
+    // Method to add courses
+    void addCourse(string course) {
+        courses.push_back(course);
+    }
+
+    // Method to display student details
+    void displayDetails() {
+        cout << "Name: " << name << "\n";
+        cout << "Roll Number: " << roll_number << "\n";
+        cout << "CGPA: " << CGPA << "\n";
+        cout << "Courses: ";
+        for (auto& course : courses) {
+            cout << course << " ";
+        }
+        cout << "\n";
+    }
+
+    // Method to update CGPA
+    void updateCGPA(float newCGPA) {
+        if (newCGPA >= 0.0 && newCGPA <= 10.0) {
+            CGPA = newCGPA;
+        } else {
+            cout << "Invalid CGPA\n";
+        }
+    }
+
+    // Getter for name and roll number
+    string getName() { return name; }
+    int getRollNumber() { return roll_number; }
+};
